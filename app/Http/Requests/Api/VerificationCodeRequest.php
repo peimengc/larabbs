@@ -9,11 +9,16 @@ class VerificationCodeRequest extends FormRequest
     public function rules()
     {
         return [
-            'phone' => [
-                'required',
-                'regex:/^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|)\d{8}$/',
-                'unique:users'
-            ]
+            'captcha_code' => 'required|string',
+            'captcha_key' => 'required|string'
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'captcha_code' => '验证码',
+            'captcha_key' => '验证码 key'
         ];
     }
 }
