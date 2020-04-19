@@ -32,6 +32,16 @@ class UsersController extends Controller
 
         Cache::forget($request->verification_key);
 
+        return (new UserResource($user))->showSensitiveFields();
+    }
+
+    public function me(Request $request)
+    {
+        return (new UserResource($request->user('api')))->showSensitiveFields();
+    }
+
+    public function show(User $user)
+    {
         return new UserResource($user);
     }
 }
