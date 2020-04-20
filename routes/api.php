@@ -32,6 +32,7 @@ Route::prefix('v1')
         Route::middleware('throttle:' . config('api.rate_limit.access'))->group(function () {
             Route::get('users/{user}', 'UsersController@show')->name('users.show');
             Route::get('categories', 'CategoriesController@index')->name('categories.index');
+            Route::get('users/{user}/topics','TopicsController@userIndex')->name('users.topics.index');
             Route::resource('topics','TopicsController')->only(['index','show']);
             Route::middleware('auth:api')->group(function () {
                 //当前登录用户信息
